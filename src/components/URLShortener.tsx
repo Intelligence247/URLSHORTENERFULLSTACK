@@ -21,6 +21,8 @@ const URLShortener: React.FC = () => {
   const [result, setResult] = useState<ShortenedUrl | null>(null);
   const [showEmail, setShowEmail] = useState(false);
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -32,7 +34,7 @@ const URLShortener: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/shorten", {
+      const response = await axios.post(`${apiBaseUrl}/shorten`, {
         originalUrl: url,
         email: email || undefined,
       });

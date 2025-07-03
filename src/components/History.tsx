@@ -18,8 +18,10 @@ const History: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
-    fetch("http://localhost:5000/api/history")
+    fetch(`${apiBaseUrl}/history`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -33,7 +35,7 @@ const History: React.FC = () => {
         setError("Failed to fetch history");
         setLoading(false);
       });
-  }, []);
+  }, [apiBaseUrl]);
 
   // Derived stats
   const totalUrls = history.length;
