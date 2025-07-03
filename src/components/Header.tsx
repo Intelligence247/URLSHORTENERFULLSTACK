@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  const apiDocsUrl = apiBaseUrl.replace(/\/api$/, '') + '/api-docs';
 
   return (
     <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
@@ -28,7 +29,7 @@ const Header: React.FC = () => {
             <RouterLink to="/history" className="text-gray-600 hover:text-blue-600 transition-colors font-semibold">
               History
             </RouterLink>
-            <a href={`${apiBaseUrl.replace(/\/api$/, '')}/api-docs`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <a href={apiDocsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
               <Zap className="w-4 h-4" />
               <span>API Docs</span>
             </a>

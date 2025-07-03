@@ -19,7 +19,7 @@ const History: React.FC = () => {
   const [page, setPage] = useState(1);
 
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-
+  console.log(apiBaseUrl);
   useEffect(() => {
     fetch(`${apiBaseUrl}/history`)
       .then((res) => res.json())
