@@ -9,8 +9,6 @@ A comprehensive URL shortening service built with the MERN stack, featuring QR c
 - **Email Integration**: Send shortened URLs via email using Resend
 - **Click Analytics**: Track clicks and engagement metrics
 - **Modern UI**: Beautiful, responsive design with smooth animations
-- **API Documentation**: Complete Swagger documentation
-- **Security**: Rate limiting, input validation, and secure data storage
 
 ## 🛠️ Tech Stack
 
@@ -27,7 +25,6 @@ A comprehensive URL shortening service built with the MERN stack, featuring QR c
 - **nanoid** for generating short codes
 - **qrcode** for QR code generation
 - **Resend** for email functionality
-- **Swagger** for API documentation
 
 ## 📋 Prerequisites
 
@@ -117,30 +114,6 @@ The frontend will run on `http://localhost:5173`
 ### 3. Access the Application
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:5000
-- **API Documentation**: http://localhost:5000/api-docs
-
-## 📚 API Documentation
-
-The API is fully documented using Swagger. Once the backend is running, visit:
-- **Swagger UI**: http://localhost:5000/api-docs
-- **Swagger JSON**: Available in `swagger.json` file
-
-### Main Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/shorten` | Shorten a URL |
-| GET | `/api/:code` | Redirect to original URL |
-| GET | `/api/stats/:code` | Get URL statistics |
-| GET | `/health` | Health check |
-
-## 🔒 Security Features
-
-- **Rate Limiting**: 100 requests per 15 minutes per IP
-- **Input Validation**: URL validation and sanitization
-- **CORS Protection**: Configured for frontend origin
-- **Security Headers**: Helmet.js for security headers
-- **Error Handling**: Comprehensive error handling
 
 ## 📱 Usage
 
