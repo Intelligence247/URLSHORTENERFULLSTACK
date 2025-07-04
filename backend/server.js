@@ -75,7 +75,6 @@
 //   console.log("🚀 Server running on port", PORT);
 // });
 
-
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -85,6 +84,7 @@ import urlRoutes from "./routes/url.js";
 import "dotenv/config";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
+import fs from "fs";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -101,10 +101,12 @@ const limiter = rateLimit({
 app.use("/api/", limiter);
 
 // CORS configuration
-app.use(cors({
-  origin: '*',
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 // Body parsing middleware
 app.use(express.json({ limit: "10mb" }));
@@ -123,9 +125,18 @@ mongoose
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // Swagger Setup
+// const swaggerOptions = {
+//   definition: await import('./config/swagger.json', { assert: { type: 'json' } }).then(module => module.default),
+//   apis: ["./routes/url.js"], // Point to route files for potential JSDoc (optional)
+// };
+
+const swaggerDefinition = JSON.parse(
+  fs.readFileSync("./config/swagger.json", "utf-8")
+);
+
 const swaggerOptions = {
-  definition: await import('./config/swagger.json', { assert: { type: 'json' } }).then(module => module.default),
-  apis: ["./routes/url.js"], // Point to route files for potential JSDoc (optional)
+  definition: swaggerDefinition,
+  apis: ["./routes/url.js"],
 };
 
 if (process.env.NODE_ENV === "production") {
